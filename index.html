@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Links to our separate style.css file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page-header">
+        <h1> Patient Appointment Management</h1>
+    </div>
+
+    <div class="container">
+        <div class="card">
+
+            <!-- Card heading with amber dot (::before in CSS) -->
+            <div class="card-title">Book / Edit Appointment</div>
+
+            <form id="appointmentForm">
+
+                <!-- Hidden field: empty = POST (create), filled = PUT (update) -->
+                <input type="hidden" id="appointment_id">
+
+                <!-- 2-column grid (.form-grid) -->
+                <div class="form-grid">
+
+                    <!-- Column 1 : Patient Name -->
+                    <div class="form-group">
+                        <label for="patient_name">Patient Name</label>
+                        <input
+                            type="text"
+                            id="patient_name"
+                            placeholder="e.g. Kathirvel"
+                            required>
+                    </div>
+
+                    <!-- Column 2 : Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="patient@email.com"
+                            required>
+                    </div>
+
+                    <!-- Column 1 : Mobile -->
+                    <div class="form-group">
+                        <label for="mobile">Mobile</label>
+                        <input
+                            type="text"
+                            id="mobile"
+                            placeholder="10-digit number"
+                            maxlength="10"
+                            required>
+                    </div>
+
+                    <!-- Column 2 : Doctor dropdown -->
+                    <div class="form-group">
+                        <label for="doctor_name">Doctor</label>
+                        <select id="doctor_name" required>
+                            <option value="">-- Select Doctor --</option>
+                            <option value="Dr. Mathu">Dr. Arun</option>
+                            <option value="Dr. Suthan">Dr. Ramesh</option>
+                            <option value="Dr. Jothi">Dr. Abin</option>
+                        </select>
+                    </div>
+
+                    <!-- Column 1 : Date -->
+                    <div class="form-group">
+                        <label for="appointment_date">Appointment Date</label>
+                        <input
+                            type="date"
+                            id="appointment_date"
+                            required>
+                    </div>
+
+                    <!-- Column 2 : Time -->
+                    <div class="form-group">
+                        <label for="appointment_time">Appointment Time</label>
+                        <input
+                            type="time"
+                            id="appointment_time"
+                            required>
+                    </div>
+
+                    <!-- Save button — spans both columns (.full-width) -->
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn btn-primary">
+                            💾 Save Appointment
+                        </button>
+                    </div>
+
+                </div>
+                <!-- end .form-grid -->
+
+            </form>
+            <!-- end form -->
+
+            <!-- Success / Error message banner appears here -->
+            <!-- CSS controls display:none by default         -->
+            <div id="message"></div>
+
+        </div>
+        <!-- end CARD 1 -->
+
+
+        <!-- ───────────────────────────────────────
+             CARD 2 : APPOINTMENT LIST  (.card)
+             Table of all appointments from DB
+        ─────────────────────────────────────── -->
+        <div class="card">
+
+            <!-- Card heading -->
+            <div class="card-title">Appointment List</div>
+
+            <!-- .table-wrapper adds scroll on small screens -->
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <!-- Column headers — teal background from CSS -->
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="appointmentTable">
+                        <!-- Rows are injected here by app.js loadAppointments() -->
+                        <!-- Each row has id="row-{id}" for the highlight effect  -->
+                    </tbody>
+
+                </table>
+
+            </div>
+            <!-- end .table-wrapper -->
+
+        </div>
+        <!-- end CARD 2 -->
+
+
+    </div>
+    <!-- end .container -->
+
+
+    <!-- app.js loaded at bottom so HTML is ready before JS runs -->
+    <script src="app.js"></script>
+
+</body>
+</html>
